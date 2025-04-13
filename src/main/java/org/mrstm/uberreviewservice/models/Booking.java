@@ -13,7 +13,7 @@ import java.util.Date;
 @AllArgsConstructor
 public class Booking extends BaseModel {
 
-    @OneToOne(cascade = {CascadeType.PERSIST, CascadeType.REMOVE} , fetch = FetchType.LAZY) //one booking one review
+    @OneToOne(cascade = {CascadeType.PERSIST, CascadeType.REMOVE}) //one booking one review
     //cascade type to prevent error related to one object should be in db to create another.
     //ie booking isn't being created without review object prepared in db
     private Review review;

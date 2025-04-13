@@ -11,4 +11,5 @@ import java.util.List;
 @Repository
 public interface BookingRepository extends JpaRepository<Booking, Long> {
     List<Booking> findAllByDriverIn(List<Driver> drivers);
+    //to make it working transactional must be annotated.
 }

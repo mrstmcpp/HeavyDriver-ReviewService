@@ -74,7 +74,7 @@ public class ReviewService implements CommandLineRunner {
 
         List<Driver> drivers = driverRepository.findAllByIdIn(driverIds);
 
-        List<Booking> bookings = bookingRepository.findAllByDriverIn(drivers);
+        List<Booking> bookings = bookingRepository.findAllByDriverIn(drivers); //to make it working transactional must be annotated.
 //        for (Driver driver : drivers) {
 //            List<Booking> bookings = driver.getBookings();
 //            bookings.forEach(booking -> System.out.println(booking.getBookingStatus())); // or driver.getId()
