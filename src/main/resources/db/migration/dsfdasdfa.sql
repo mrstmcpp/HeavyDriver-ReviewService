@@ -3,7 +3,13 @@ CREATE TABLE booking
     id             BIGINT AUTO_INCREMENT NOT NULL,
     created_at     datetime NOT NULL,
     updated_at     datetime NOT NULL,
-    booking_status VARCHAR(255) NULL,
+    review_id      BIGINT NULL,
+    booking_status ENUM('SCHEDULED',
+        'ARRIVED',
+        'COMPLETED',
+        'ASSIGNING_DRIVER',
+        'IN_RIDE',
+        'CAB_ARRIVED') NULL,
     start_time     datetime NULL,
     end_time       datetime NULL,
     total_distance BIGINT NULL,
@@ -18,8 +24,7 @@ CREATE TABLE booking_review
     created_at datetime     NOT NULL,
     updated_at datetime     NOT NULL,
     content    VARCHAR(255) NOT NULL,
-    rating DOUBLE NULL,
-    booking_id BIGINT NULL,
+    rating DOUBLE NOT NULL,
     CONSTRAINT pk_booking_review PRIMARY KEY (id)
 );
 
@@ -59,8 +64,8 @@ ALTER TABLE booking
 ALTER TABLE booking
     ADD CONSTRAINT FK_BOOKING_ON_PASSENGER FOREIGN KEY (passenger_id) REFERENCES passenger (id);
 
-ALTER TABLE booking_review
-    ADD CONSTRAINT FK_BOOKING_REVIEW_ON_BOOKING FOREIGN KEY (booking_id) REFERENCES booking (id);
+ALTER TABLE booking
+    ADD CONSTRAINT FK_BOOKING_ON_REVIEW FOREIGN KEY (review_id) REFERENCES booking_review (id);
 
 ALTER TABLE passanger_review
     ADD CONSTRAINT FK_PASSANGERREVIEW_ON_PASSANGERREVIEWID FOREIGN KEY (passanger_review_id) REFERENCES booking_review (id);

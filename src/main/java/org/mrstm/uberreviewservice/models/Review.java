@@ -40,6 +40,11 @@ public class Review extends BaseModel {
     @Column(nullable = false)
     private String content;
 
-    @Column(nullable = false)
     private Double rating;
+
+
+    @OneToOne(cascade = {CascadeType.ALL}) //one booking one review
+    //cascade type to prevent error related to one object should be in db to create another.
+    //ie booking isn't being created without review object prepared in db
+    private Booking booking;
 }

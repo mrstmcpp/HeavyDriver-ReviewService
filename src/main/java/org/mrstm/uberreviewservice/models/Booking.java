@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Getter
@@ -12,12 +13,6 @@ import java.util.Date;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Booking extends BaseModel {
-
-    @OneToOne(cascade = {CascadeType.PERSIST, CascadeType.REMOVE}) //one booking one review
-    //cascade type to prevent error related to one object should be in db to create another.
-    //ie booking isn't being created without review object prepared in db
-    private Review review;
-
 
     @Enumerated(value = EnumType.STRING) //tells spring that it is an enum.
     private BookingStatus bookingStatus;
