@@ -1,10 +1,9 @@
 package org.mrstm.uberreviewservice.services;
 
 
-import jakarta.persistence.EntityExistsException;
 import jakarta.persistence.EntityNotFoundException;
 import org.hibernate.FetchNotFoundException;
-import org.mrstm.uberreviewservice.models.Review;
+import org.mrstm.uberentityservice.models.Review;
 import org.mrstm.uberreviewservice.repositories.ReviewRepository;
 import org.springframework.stereotype.Service;
 
@@ -12,9 +11,9 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class ReviewServiceImpl implements ReviewService {
+public class BookingReviewServiceImpl implements BookingReviewService {
     private final ReviewRepository reviewRepository;
-    public ReviewServiceImpl(ReviewRepository reviewRepository) {
+    public BookingReviewServiceImpl(ReviewRepository reviewRepository) {
         this.reviewRepository = reviewRepository;
     }
 
@@ -23,6 +22,7 @@ public class ReviewServiceImpl implements ReviewService {
     public Review publishReview(Review review) {
         return reviewRepository.save(review);
     }
+
 
     @Override
     public List<Review> getAllReviews() {

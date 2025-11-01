@@ -1,14 +1,14 @@
 package org.mrstm.uberreviewservice.services;
 
 
-import org.mrstm.uberreviewservice.models.Review;
+import org.mrstm.uberentityservice.models.Review;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
 @Service
-public interface ReviewService {
+public interface BookingReviewService {
     public Review publishReview(Review review);
 
     public List<Review> getAllReviews();
