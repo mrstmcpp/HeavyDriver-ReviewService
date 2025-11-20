@@ -18,6 +18,8 @@ public interface BookingReviewService {
 
     public PublishReviewResponseDto getReviewById(Long reviewId);
 
+    public PublishReviewResponseDto getReviewByBookingId(Long bookingId);
+
     public Review updateReview(Long id , Review review);
 
     public boolean deleteReview(Long id);

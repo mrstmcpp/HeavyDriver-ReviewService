@@ -36,7 +36,7 @@ public class BookingReviewServiceImpl implements BookingReviewService {
     @Override
     @Transactional
     public PublishReviewResponseDto publishReview(PublishReviewRequestDto publishReviewRequestDto, Long bookingId, Long userId) {
-        //todo: verify user belongs to this booking.
+
 
         Booking booking = bookingRepository.getBookingById(bookingId).orElseThrow(() -> new NotFoundException("No booking found."));
         if (booking.getBookingReview() != null) {
@@ -51,6 +51,7 @@ public class BookingReviewServiceImpl implements BookingReviewService {
                 .content(publishReviewRequestDto.getContent())
                 .rating(publishReviewRequestDto.getRating())
                 .booking(booking)
+                .driver(booking.getDriver())
                 .build();
         reviewRepository.save(review);
         return PublishReviewResponseDto.builder()
@@ -86,6 +87,11 @@ public class BookingReviewServiceImpl implements BookingReviewService {
     @Override
     public PublishReviewResponseDto getReviewById(Long reviewId) {
         return reviewRepository.findReviewById(reviewId).orElseThrow(() -> new NotFoundException("No review found with provided review ID."));
+    }
+
+    @Override
+    public PublishReviewResponseDto getReviewByBookingId(Long bookingId) {
+        return reviewRepository.findReviewBookingId(bookingId).orElseThrow(() -> new NotFoundException("No review found for this booking ID."));
     }
 
     @Override
